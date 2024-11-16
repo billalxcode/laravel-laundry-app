@@ -13,15 +13,8 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
-    }
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static ?string $navigationGroup = 'Master Data';
 
     public static function table(Table $table): Table
     {

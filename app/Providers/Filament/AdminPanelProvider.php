@@ -17,12 +17,14 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->default()
             ->id('admin')
             ->path('admin')
             ->colors([
@@ -51,6 +53,23 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugins([
+                FilamentEditProfilePlugin::make()
+                    ->slug('profile')
+                    ->setTitle('My Profile')
+                    ->setNavigationLabel('My Profile')
+                    ->setNavigationGroup('Settings')
+                    ->setIcon('heroicon-o-user')
+                    ->setSort(10)
+                    ->shouldRegisterNavigation(false)
+                    ->shouldShowDeleteAccountForm(false)
+                    ->shouldShowBrowserSessionsForm()
+                    ->shouldShowAvatarForm(
+                        true,
+                        'avatars',
+                        'mimes:jpeg,png|max:1024'
+                    )
             ])
             ->login();
     }

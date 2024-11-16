@@ -4,13 +4,15 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser, MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail, HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, HasRoles, Notifiable;
@@ -24,6 +26,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'name',
         'email',
         'password',
+        'avatar_url'
     ];
 
     /**
@@ -47,6 +50,10 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getFilamentAvatarUrl(): string|null {
+        return $this->avatar_url ? Storage::url($this->avatar_url) : null;
     }
 
     public function canAccessPanel(\Filament\Panel $panel): bool
