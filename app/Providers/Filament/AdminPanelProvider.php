@@ -62,7 +62,7 @@ class AdminPanelProvider extends PanelProvider
                     ->setNavigationGroup('Settings')
                     ->setIcon('heroicon-o-user')
                     ->setSort(10)
-                    ->shouldRegisterNavigation(false)
+                    ->shouldRegisterNavigation(true)
                     ->shouldShowDeleteAccountForm(false)
                     ->shouldShowBrowserSessionsForm()
                     ->shouldShowAvatarForm(
