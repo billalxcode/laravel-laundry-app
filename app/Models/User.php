@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -53,8 +53,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     {
         if ($panel->getId() === 'admin') {
             return $this->hasRole('owner');
-        } else if ($panel->getId() === 'customer') {
-            return !$this->hasRole('owner');
+        } elseif ($panel->getId() === 'customer') {
+            return ! $this->hasRole('owner');
         }
 
         return false;

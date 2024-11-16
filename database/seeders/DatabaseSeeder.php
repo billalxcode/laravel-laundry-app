@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
         ]);
         $owner->assignRole('owner');
-        
+
         User::factory(10)->create();
     }
 }
