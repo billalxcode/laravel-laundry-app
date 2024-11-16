@@ -20,9 +20,6 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
-use LaraZeus\Boredom\BoringAvatarPlugin;
-use LaraZeus\Boredom\BoringAvatarsProvider;
-use LaraZeus\Boredom\Enums\Variants;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -75,7 +72,7 @@ class AdminPanelProvider extends PanelProvider
                         'avatars',
                         'mimes:jpeg,png|max:1024'
                     ),
-                GravatarPlugin::make()
+                GravatarPlugin::make(),
             ])
             ->defaultAvatarProvider(
                 GravatarProvider::class

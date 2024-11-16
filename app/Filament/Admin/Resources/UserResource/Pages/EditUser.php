@@ -25,31 +25,31 @@ class EditUser extends EditRecord
         return $form->schema([
             Section::make('User Information')->schema([
                 FileUpload::make('avatar_url')
-                ->placeholder('Please upload image file')
-                ->columnSpanFull()
+                    ->placeholder('Please upload image file')
+                    ->columnSpanFull()
                     ->required()
                     ->image(),
                 TextInput::make('name')
-                ->placeholder('Please input full name')
-                ->string()
+                    ->placeholder('Please input full name')
+                    ->string()
                     ->required(),
                 TextInput::make('email')
-                ->placeholder('Please input user email')
-                ->email()
-                    ->required()
+                    ->placeholder('Please input user email')
+                    ->email()
+                    ->required(),
             ]),
             Section::make('Credentials')
-            ->schema([
-                TextInput::make('password')
-                ->placeholder('Please input password')
-                ->password()
-                    ->required(),
-                TextInput::make('confirm_password')
-                ->placeholder('Please confirm password')
-                ->password()
-                    ->required()
-                    ->same('password')
-            ])
+                ->schema([
+                    TextInput::make('password')
+                        ->placeholder('Please input password')
+                        ->password()
+                        ->required(),
+                    TextInput::make('confirm_password')
+                        ->placeholder('Please confirm password')
+                        ->password()
+                        ->required()
+                        ->same('password'),
+                ]),
         ]);
     }
 }

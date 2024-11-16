@@ -4,7 +4,6 @@ namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Models\User;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
@@ -18,6 +17,7 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+
     protected static ?string $navigationGroup = 'Master Data';
 
     public static function getEloquentQuery(): Builder
@@ -42,13 +42,13 @@ class UserResource extends Resource
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('email_verified_at')
-                    ->formatStateUsing(fn($state) => $state ? 'Verified' : 'Not verified')
+                    ->formatStateUsing(fn ($state) => $state ? 'Verified' : 'Not verified')
                     ->badge()
                     ->colors([
                         'success' => 'verified',
-                        'danger' => 'not verified'
+                        'danger' => 'not verified',
                     ])
-                    ->sortable()
+                    ->sortable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

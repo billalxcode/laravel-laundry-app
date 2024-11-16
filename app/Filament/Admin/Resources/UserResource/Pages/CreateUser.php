@@ -28,7 +28,7 @@ class CreateUser extends CreateRecord
                 TextInput::make('email')
                     ->placeholder('Please input user email')
                     ->email()
-                    ->required()
+                    ->required(),
             ]),
             Section::make('Credentials')
                 ->schema([
@@ -40,8 +40,8 @@ class CreateUser extends CreateRecord
                         ->placeholder('Please confirm password')
                         ->password()
                         ->required()
-                        ->same('password')
-                ])
+                        ->same('password'),
+                ]),
         ]);
     }
 }
