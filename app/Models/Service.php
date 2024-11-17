@@ -9,4 +9,12 @@ class Service extends Model
 {
     /** @use HasFactory<\Database\Factories\ServiceFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'outlet_id',
+        'name',
+        'description',
+        'price',
+        'pricing_type'
+    ];
 }
