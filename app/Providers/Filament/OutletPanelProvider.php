@@ -51,6 +51,7 @@ class OutletPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->login();
     }
 }
