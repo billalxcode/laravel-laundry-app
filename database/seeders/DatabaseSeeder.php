@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Role::findOrCreate('owner');
+        Role::findOrCreate('outlet');
         Role::findOrCreate('customer');
 
         $owner = User::factory()->create([
@@ -23,6 +24,9 @@ class DatabaseSeeder extends Seeder
         ]);
         $owner->assignRole('owner');
 
-        User::factory(10)->create();
+        $customers = User::factory(10)->create();
+        foreach ($customers as $customer) {
+            $customer->assignRole('customer');
+        }
     }
 }
