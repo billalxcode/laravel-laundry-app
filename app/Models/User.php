@@ -61,6 +61,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
     {
         if ($panel->getId() === 'admin') {
             return $this->hasRole('owner');
+        } elseif ($panel->getId() === 'outlet') {
+            return $this->hasRole('outlet');
         } elseif ($panel->getId() === 'customer') {
             return ! $this->hasRole('owner');
         }
