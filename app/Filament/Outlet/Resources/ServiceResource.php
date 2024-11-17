@@ -26,10 +26,10 @@ class ServiceResource extends Resource
                     ->money('IDR'),
                 TextColumn::make('pricing_type')
                     ->badge()
-                    ->formatStateUsing(fn($state) => str(join(' ', explode('_', $state)))->title()),
+                    ->formatStateUsing(fn ($state) => str(implode(' ', explode('_', $state)))->title()),
                 TextColumn::make('description')
                     ->html()
-                    ->limit(30)
+                    ->limit(30),
             ])
             ->filters([
                 //

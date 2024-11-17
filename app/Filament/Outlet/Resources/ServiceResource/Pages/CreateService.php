@@ -43,8 +43,8 @@ class CreateService extends CreateRecord
                 ])->columnSpanFull(),
             Section::make('Description')
                 ->schema([
-                    RichEditor::make('description')
-                ])
+                    RichEditor::make('description'),
+                ]),
         ]);
     }
 }

@@ -3,21 +3,17 @@
 namespace App\Filament\Outlet\Resources;
 
 use App\Filament\Outlet\Resources\OrderResource\Pages;
-use App\Filament\Outlet\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'tabler-basket-filled';
 
     public static function form(Form $form): Form
     {

@@ -15,6 +15,6 @@ class Service extends Model
         'name',
         'description',
         'price',
-        'pricing_type'
+        'pricing_type',
     ];
 }

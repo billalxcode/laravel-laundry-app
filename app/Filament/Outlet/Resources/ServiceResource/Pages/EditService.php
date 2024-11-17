@@ -21,7 +21,8 @@ class EditService extends EditRecord
         ];
     }
 
-    public function form(\Filament\Forms\Form $form): \Filament\Forms\Form {
+    public function form(\Filament\Forms\Form $form): \Filament\Forms\Form
+    {
         return $form->schema([
             Section::make('Services Information')
                 ->schema([
@@ -39,8 +40,8 @@ class EditService extends EditRecord
                 ])->columnSpanFull(),
             Section::make('Description')
                 ->schema([
-                    RichEditor::make('description')
-                ])
+                    RichEditor::make('description'),
+                ]),
         ]);
     }
 }
