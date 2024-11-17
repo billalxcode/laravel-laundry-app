@@ -67,4 +67,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, MustVerif
 
         return false;
     }
+
+    public function outlet()
+    {
+        return $this->hasOne(Outlet::class);
+    }
 }
