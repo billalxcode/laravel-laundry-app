@@ -4,9 +4,8 @@ namespace App\Filament\Outlet\Resources;
 
 use App\Filament\Outlet\Resources\OrderResource\Pages;
 use App\Models\Order;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class OrderResource extends Resource
@@ -15,38 +14,17 @@ class OrderResource extends Resource
 
     protected static ?string $navigationIcon = 'tabler-basket-filled';
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
-    }
-
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                TextColumn::make('user.name')
+                    ->label('Customer'),
+                TextColumn::make('status')
+                    ->badge(),
+                TextColumn::make('total_price')
+                    ->money('IDR'),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array
