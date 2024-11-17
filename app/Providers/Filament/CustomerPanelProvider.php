@@ -24,7 +24,7 @@ class CustomerPanelProvider extends PanelProvider
     {
         return $panel
             ->id('customer')
-            ->path('customer')
+            ->path('')
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -51,6 +51,8 @@ class CustomerPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->login()
+            ->registration();
     }
 }
