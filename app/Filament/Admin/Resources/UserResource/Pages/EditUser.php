@@ -38,18 +38,6 @@ class EditUser extends EditRecord
                     ->email()
                     ->required(),
             ]),
-            Section::make('Credentials')
-                ->schema([
-                    TextInput::make('password')
-                        ->placeholder('Please input password')
-                        ->password()
-                        ->required(),
-                    TextInput::make('confirm_password')
-                        ->placeholder('Please confirm password')
-                        ->password()
-                        ->required()
-                        ->same('password'),
-                ]),
         ]);
     }
 }
