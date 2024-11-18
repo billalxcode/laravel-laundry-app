@@ -70,7 +70,7 @@ class UserResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                TrashedFilter::make()
+                TrashedFilter::make(),
             ])
             ->actions([
                 ActionGroup::make([
