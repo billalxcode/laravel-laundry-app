@@ -6,10 +6,17 @@ use App\Filament\Admin\Resources\UserResource\Pages;
 use App\Models\User;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ForceDeleteAction;
+use Filament\Tables\Actions\RestoreAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
 class UserResource extends Resource
@@ -24,7 +31,9 @@ class UserResource extends Resource
     {
         $user = Auth::user();
 
-        return parent::getEloquentQuery()->whereNot('id', $user->id);
+        return parent::getEloquentQuery()->whereNot('id', $user->id)->withoutGlobalScopes([
+            SoftDeletingScope::class,
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -60,8 +69,16 @@ class UserResource extends Resource
                     ])
                     ->sortable(),
             ])
+            ->filters([
+                TrashedFilter::make()
+            ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                ActionGroup::make([
+                    EditAction::make(),
+                    DeleteAction::make(),
+                    ForceDeleteAction::make(),
+                    RestoreAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
