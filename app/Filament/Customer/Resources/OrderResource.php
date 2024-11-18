@@ -4,9 +4,7 @@ namespace App\Filament\Customer\Resources;
 
 use App\Filament\Customer\Resources\OrderResource\Pages;
 use App\Models\Order;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
 
 class OrderResource extends Resource
