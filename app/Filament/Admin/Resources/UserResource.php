@@ -41,6 +41,16 @@ class UserResource extends Resource
                     ->copyable()
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('roles')
+                    ->badge()
+                    ->formatStateUsing(function (User $record) {
+                        $roles = $record->getRoleNames()->toArray();
+                        $roles_collector = collect($roles)->map(function ($data) {
+                            return str($data)->ucfirst();
+                        });
+
+                        return implode(' ', $roles_collector->toArray());
+                    }),
                 TextColumn::make('email_verified_at')
                     ->formatStateUsing(fn ($state) => $state ? 'Verified' : 'Not verified')
                     ->badge()
