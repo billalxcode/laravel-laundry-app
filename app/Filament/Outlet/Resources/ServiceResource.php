@@ -8,6 +8,8 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceResource extends Resource
 {
@@ -16,6 +18,13 @@ class ServiceResource extends Resource
     protected static ?string $navigationIcon = 'tabler-heart-handshake';
 
     protected static ?string $navigationGroup = 'Settings';
+
+    public static function getEloquentQuery(): Builder
+    {
+        $user = Auth::user();
+
+        return parent::getEloquentQuery()->where('outlet_id', $user->outlet->id);
+    }
 
     public static function table(Table $table): Table
     {
