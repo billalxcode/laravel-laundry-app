@@ -39,6 +39,7 @@ class CreateOrder extends CreateRecord
                         Repeater::make('services')
                             ->schema([
                                 Select::make('service_id')
+                                    ->label('Service')
                                     ->options(
                                         Service::all()->pluck('name', 'id')
                                     )
@@ -59,13 +60,13 @@ class CreateOrder extends CreateRecord
                                 TextInput::make('weight')
                                     ->numeric()
                                     ->suffix('KG')
-                                    ->hidden(fn(Get $get) => $get('pricing_type') !== 'per_kilogram'),
+                                    ->hidden(fn (Get $get) => $get('pricing_type') !== 'per_kilogram'),
                             ])
                             ->live()
                             ->reactive()
                             ->afterStateUpdated(function (Set $set, Get $get) {
                                 $selectedServices = collect($get('services'))
-                                    ->filter(fn ($item) => !empty($item['service_id'] && (!empty($item['weight'] || !empty($item['qty'])))));
+                                    ->filter(fn ($item) => ! empty($item['service_id'] && (! empty($item['weight'] || ! empty($item['qty'])))));
                                 $services = Service::find(
                                     $selectedServices->pluck('service_id')
                                 )->pluck('price', 'id');
